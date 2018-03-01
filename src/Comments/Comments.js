@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
+import Comment from './Comment'
 
 export default class Comments extends Component {
   renderComment(key, comment) {
     return (
-      <p key={key}>{comment.comment}</p>
+      <Comment key={key} comment={comment} />
     )
   }
+  
   render() {
     return (
       <div>

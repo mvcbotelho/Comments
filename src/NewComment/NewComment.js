@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 
 export default class NewComment extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.handleOnKeyPress = this.handleOnKeyPress.bind(this)
   }
 
   handleOnKeyPress(e) {
-    if(e.keyCode === 13) {
+    if (e.keyCode === 13) {
       this.props.postNewComment({
         comment: this.refs.comment.value
       })
@@ -16,15 +16,15 @@ export default class NewComment extends Component {
     }
   }
   render() {
-    return(
+    return (
       <div className='row'>
-      <h1>TESTE</h1>
-      <textarea 
-        ref='comment'
-        placeholder='Deixe o seu comentário!' 
-        className='form-control'
-        onKeyDown={this.handleOnKeyPress}>
-      </textarea>
+        <h1>TESTE</h1>
+        <textarea
+          ref='comment'
+          placeholder='Deixe o seu comentário!'
+          className='form-control'
+          onKeyDown={this.handleOnKeyPress}>
+        </textarea>
       </div>
     )
   }
