@@ -18,7 +18,7 @@ export default class NewComment extends Component {
   render() {
     return (
       <div className='row'>
-        <h1>TESTE</h1>
+        <h1>Comments system</h1>
         <textarea
           ref='comment'
           placeholder='Deixe o seu comentário!'
