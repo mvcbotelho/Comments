@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+
 import NewComment from './NewComment/NewComment'
 import Comments from './Comments/Comments'
 
 import 'bootstrap-css-only'
+import base from './Rebase/Rebase'
 
 class App extends Component {
   constructor(props){
@@ -12,14 +14,14 @@ class App extends Component {
     
     this.state = {
       comments : {
-        '1': {
-          comment: 'Primeiro comentário'
-        },
-        '2': {
-          comment: 'Segundo comentário'
-        }
       }
     }
+
+    this.refComments= base.syncState('comments', {
+      context: this,
+      state: 'comments'
+    })
+
   }
 
   postNewComment(comment){
