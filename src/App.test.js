@@ -1,5 +1,6 @@
 import React from 'react'
 import App from './App'
+import base from './Rebase/Rebase'
 
 import { shallow, mount, render } from 'enzyme'
 
@@ -29,11 +30,4 @@ describe('<App />', () => {
     const comments = Object.keys(wrapper.instance().state.comments)
     expect(comments.length).toBe(1)
   })
-  // it('outputs the <App />', () => {
-  //   const wrapperShallow = shallow(<App />)
-  //   const wrapperMount = mount(<App />)
-  //   const wrapperRender = render(<App />)
-
-  //   console.log(wrapperRender.html())
-  // })
 })
