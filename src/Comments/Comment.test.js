@@ -25,7 +25,6 @@ describe('<Comment />', () => {
   })
   it('Text in comment.comment === test', () => {
     const wrapper = shallow(<Comment comment={comment} />)
-    console.log(wrapper.text())
     expect(wrapper.text()).toBe(comment.comment)
   })
 })

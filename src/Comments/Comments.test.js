@@ -4,7 +4,7 @@ import Comments from './Comments'
 import { shallow, mount, render } from 'enzyme'
 
 describe('<Comments />', () => {
-  const comment = {
+  const comments = {
     1: {
       comment: 'test 1'
     },
@@ -15,5 +15,9 @@ describe('<Comments />', () => {
   it('renders without crashing', () => {
     const wrapper = mount(<Comments comments={comments} />)
     expect(wrapper.length).toBe(1)
+  })
+  it('Number of Comment in app', () => {
+    const wrapper = mount(<Comments comments={comments} />)
+    expect(wrapper.find('Comment').length).toBe(2)
   })
 })
