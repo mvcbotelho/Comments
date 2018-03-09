@@ -13,8 +13,7 @@ class App extends Component {
     this.postNewComment = this.postNewComment.bind(this)
 
     this.state = {
-      comments: {
-      },
+      comments: {},
       isLoggedIn: false,
       user: {}
     }
@@ -24,8 +23,12 @@ class App extends Component {
       state: 'comments'
     })
 
-    // this.props.base.onAuth(user => {
-    //   console.log(user)
+    // this.props.auth.onAuthStateChange(user => {
+    //   if (user) { 
+    //     this.setState({ isLoggedIn: true, user })
+    //   } else {
+    //     this.setState({ isLoggedIn: false, user: {} })
+    //   }
     // })
   }
 
@@ -43,8 +46,16 @@ class App extends Component {
     provider = new firebase.auth.FacebookAuthProvider()
     auth.signInWithPopup(provider)
       .then(result => { 
-        const uid = result.user.uid
-        console.log(uid) 
+        // const uid = result.user.uid
+        // console.log(result.user.displayName)
+        // console.log(result.user.photoURL)
+        // console.log(result.user)
+        // console.log(uid) 
+        if(this.state.result.user){
+          this.setState({ isLoggedIn: true})
+        }else{
+          this.setState({ isLoggedIn: false, user: {} })
+        }
       })
       .catch(error => {
       })
