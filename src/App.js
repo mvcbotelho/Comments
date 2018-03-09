@@ -43,19 +43,20 @@ class App extends Component {
 
   auth(provider) {
     const auth = firebase.auth()
+    const isLoggedIn = { ...this.state.isLoggedIn }
+    const users = { ...this.state.user }
     provider = new firebase.auth.FacebookAuthProvider()
     auth.signInWithPopup(provider)
       .then(result => { 
-        // const uid = result.user.uid
-        // console.log(result.user.displayName)
-        // console.log(result.user.photoURL)
-        // console.log(result.user)
-        // console.log(uid) 
-        if(this.state.result.user){
-          this.setState({ isLoggedIn: true})
+        console.log(this.state.isLoggedIn)
+        console.log(this.state.users)
+        if(result.user){
+          this.setState({ isLoggedIn: true, users })
         }else{
           this.setState({ isLoggedIn: false, user: {} })
         }
+        console.log(this.state.isLoggedIn)
+        console.log(this.state.users)
       })
       .catch(error => {
       })
