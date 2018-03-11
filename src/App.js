@@ -15,7 +15,10 @@ class App extends Component {
     this.state = {
       comments: {},
       isLoggedIn: false,
-      user: {}
+      user: {
+        name: null,
+        photo: null
+      }
     }
 
     this.refComments = this.props.base.syncState('comments', {
@@ -23,13 +26,6 @@ class App extends Component {
       state: 'comments'
     })
 
-    // this.props.auth.onAuthStateChange(user => {
-    //   if (user) { 
-    //     this.setState({ isLoggedIn: true, user })
-    //   } else {
-    //     this.setState({ isLoggedIn: false, user: {} })
-    //   }
-    // })
   }
 
   postNewComment(comment) {
@@ -47,16 +43,12 @@ class App extends Component {
     const users = { ...this.state.user }
     provider = new firebase.auth.FacebookAuthProvider()
     auth.signInWithPopup(provider)
-      .then(result => { 
-        console.log(this.state.isLoggedIn)
-        console.log(this.state.users)
-        if(result.user){
-          this.setState({ isLoggedIn: true, users })
-        }else{
+      .then(result => {
+        if (result.user) {
+          this.setState({ isLoggedIn: true, user: { name: result.user.displayName, photo: result.user.photoURL } })
+        } else {
           this.setState({ isLoggedIn: false, user: {} })
         }
-        console.log(this.state.isLoggedIn)
-        console.log(this.state.users)
       })
       .catch(error => {
       })
@@ -65,7 +57,14 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        {this.state.isLoggedIn && <NewComment postNewComment={this.postNewComment} />}
+        {this.state.isLoggedIn &&
+          <div>
+            {this.state.user.name}
+            <img alt={this.state.user.displayName} src={this.state.user.photo} /> <br/>
+            {console.log(this.props.auth)}
+            <button onClick={() => this.props.auth.singOut()}>Deslogar</button>
+            <NewComment postNewComment={this.postNewComment} />
+          </div>}
         {!this.state.isLoggedIn &&
           <div className='alert alert-info'>
             <button onClick={() => this.auth('facebook')}>Entre com o Facebook para comentar</button>
