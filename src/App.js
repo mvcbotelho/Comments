@@ -61,7 +61,7 @@ class App extends Component {
           <div>
             {this.state.user.name}
             <img alt={this.state.user.displayName} src={this.state.user.photo} /> <br/>
-            {console.log(this.props.auth)}
+            {console.log(this.props.isLoggedIn)}
             <button onClick={() => this.props.auth.singOut()}>Deslogar</button>
             <NewComment postNewComment={this.postNewComment} />
           </div>}

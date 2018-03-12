@@ -2,8 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import registerServiceWorker from './registerServiceWorker'
-import base from './Rebase/Rebase'
+import base, { auth, providers } from './Rebase/Rebase'
 
-ReactDOM.render(<App base={base} />, 
+ReactDOM.render(<App base={base} auth={auth} providers={providers} />, 
   document.getElementById('root'))
 registerServiceWorker()
